@@ -1,0 +1,32 @@
+
+<a routerLink="/mainpage" class="nav-link active" aria-current="page" href="#">Dashboard</a>
+<div class="container-fluid  head-bg">
+    <div class="fw-bold text-center  container-fluid p-0 m-0 form-group pb-2">
+        <input type="text" class="form-control" 
+    [(ngModel)]="searchText" placeholder="Enter text to search" >
+    </div>
+</div>
+<table class="table table-warning table-striped">
+    <thead>
+        <tr>
+            <th>TASK ID</th>
+            <th>TASK NAME</th>
+            <th>TASK STATUS</th>
+            <th>START TIME</th>
+            <th>END TIME</th>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of TaskList | pipe: searchText; index as i">
+            <td>{{dataItem.TASK_ID}}</td>
+            <td>{{dataItem.TASK_NAME}}</td>
+            <td>{{dataItem.TASK_STATUS}}</td>
+            <td>{{dataItem.START_TIME}}</td>
+            <td>{{dataItem.END_TIME}}</td>
+        </tr>
+    </tbody>
+</table>
+
+

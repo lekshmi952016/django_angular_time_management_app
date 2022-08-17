@@ -1,0 +1,17 @@
+/* form{
+    color:white;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #50845b;
+    padding:30px 20px;
+    margin:50px auto;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+} */
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}

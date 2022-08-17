@@ -1,0 +1,105 @@
+<a routerLink="/usertemplate" class="nav-link active" aria-current="page" href="#">Dashboard</a>
+<div class="container-fluid  head-bg">
+    <div class="fw-bold text-center  container-fluid p-0 m-0 form-group pb-2">
+        <input type="text" class="form-control" 
+    [(ngModel)]="searchText" placeholder="Enter text to search" >
+    </div>
+</div>
+<table class="table table-secondary table-striped">
+    <thead>
+        <tr>
+            <th>TASK ID</th>
+            <th>TASK NAME</th>
+            <th>TASK STATUS</th>
+            <th>START TIME</th>
+            <th>END TIME</th>
+            <th>CREATED DATE</th>
+            <!-- <th>APPROVAL STATUS</th> -->
+            <th>ASSIGNED MANAGER</th>
+            <th>TASK DESCRIPTION</th>
+            <th>UPDATE ACTION</th>
+            <th>DELETE ACTION</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of TaskList | pipe: searchText; index as i">
+            <td>{{dataItem.TASK_ID}}</td>
+            <td>{{dataItem.TASK_NAME}}</td>
+            <td>{{dataItem.TASK_STATUS}}</td>
+            <td>{{dataItem.START_TIME}}</td>
+            <td>{{dataItem.END_TIME}}</td>
+            <td>{{dataItem.CREATED_DATE}}</td>
+            <!-- <td>{{dataItem.APPROVAL_STATUS}}</td> -->
+            <td>{{dataItem.ASSIGNED_MANAGER}}</td>
+            <td>{{dataItem.TASK_DESCRIPTION}}</td>
+            
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="edit(dataItem)">Edit</button>
+                <td><button type="button" class="btn btn-danger" (click)="deleteuser(dataItem)">Delete</button></td>
+            </tr>
+    </tbody>
+</table>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Update Task</h5>
+   
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+   
+    <form #updateForm="ngForm" (ngSubmit)="updateuser()">
+    
+    <div class="form-group">
+    <label>Task id</label>
+    <input type="text" name="TASK_ID" class="form-control" #TASK_ID [(ngModel)]="UserValue.TASK_ID" required>
+    </div>
+    
+    <div class="form-group">
+    <label>Task Name</label>
+    <input type="text" name="TASK_NAME" class="form-control" #TASK_NAME [(ngModel)]="UserValue.TASK_NAME" required>
+    </div>
+    
+    <div class="form-group">
+    <label>Task Status</label>
+    <input type="text" name="TASK_STATUS" class="form-control" #TASK_STATUS pattern="^[A-Za-z][A-Za-z ]+$" [(ngModel)]="UserValue.TASK_STATUS" required>
+    </div>
+    
+    <div class="form-group">
+    <label>Start Time</label>
+    <input type="time" name="START_TIME" class="form-control" #START_TIME [(ngModel)]="UserValue.START_TIME" required>
+    </div>
+    
+    <div class="form-group">
+    <label>End Time</label>
+    <input type="time" name="END_TIME" class="form-control" #END_TIME [(ngModel)]="UserValue.END_TIME" required>
+    </div>
+    
+    <div class="form-group">
+    <label>Created Date</label>
+    <input type="date" name="CREATED_DATE" class="form-control" #CREATED_DATE [(ngModel)]="UserValue.CREATED_DATE" required>
+    </div>
+    
+    <!-- <div class="form-group">
+    <label>Approval Status</label>
+    <input type="text" name="APPROVAL_STATUS" class="form-control" #APPROVAL_STATUS [(ngModel)]="UserValue.APPROVAL_STATUS" required>
+    </div> -->
+    
+    <div class="form-group">
+    <label>Assigned Manager</label>
+    <input type="text" name="ASSIGNED_MANAGER" class="form-control" #ASSIGNED_MANAGER [(ngModel)]="UserValue.ASSIGNED_MANAGER" required>
+    </div>
+    
+    <div class="form-group">
+    <label>Task Description</label>
+    <input type="text" name="TASK_DESCRIPTION" class="form-control" #TASK_DESCRIPTION [(ngModel)]="UserValue.TASK_DESCRIPTION" required>
+    </div>
+    
+    <div class="form-group">
+    <input type="submit" value="Update" class="btn btn-primary w-100">
+    </div>
+    
+    </form>

@@ -1,0 +1,25 @@
+<a routerLink="/mainpage" class="nav-link active" aria-current="page" href="#">Dashboard</a>
+
+<table class="table table-success table-striped">
+    <thead>
+        <tr>
+            <th>USER ID</th>
+            <th>USER NAME</th>
+            <th>FULL NAME</th>
+            <th>DEPARTMENT</th>
+            <th>DESIGNATION</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of TaskList ">
+            <td>{{dataItem.USER_ID}}</td>
+            <td>{{dataItem.USER_NAME}}</td>
+            <td>{{dataItem.FULL_NAME}}</td>
+            <td>{{dataItem.DEPARTMENT}}</td>
+            <td>{{dataItem.DESIGNATION}}</td>
+           
+            
+        </tr>
+    </tbody>
+</table>

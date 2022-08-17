@@ -1,0 +1,60 @@
+
+<a routerLink="/mainpage" class="nav-link active" aria-current="page" href="#">Dashboard</a>
+<div class="container-fluid  head-bg">
+    <div class="fw-bold text-center  container-fluid p-0 m-0 form-group pb-2">
+        <input type="text" class="form-control" 
+    [(ngModel)]="searchTerm" placeholder="Enter text to search" >
+    </div>
+</div>
+<div *ngIf="taskById">
+    <form #approveTask="ngForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-12">
+            <label>Approval Status</label>
+        </div>
+        <div class="col-12">
+            <select name="APPROVAL_STATUS" class="form-control input-size" #APPROVAL_STATUS ="ngModel"  [(ngModel)]="taskById.APPROVAL_STATUS" required>
+              <option value="Approved">Approve</option>
+              <option value="Rejected">Reject</option>
+            </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+<table  class="table table-primary table-striped">
+    <thead>
+        <tr>
+            <th>TASK ID</th>
+            <th>TASK NAME</th>
+            <th>TASK STATUS</th>
+            <th>START TIME</th>
+            <th>END TIME</th>
+            <th>CREATED DATE</th>
+            <th>APPROVAL STATUS</th>
+            <th>ASSIGNED MANAGER</th>
+            <th>TASK DESCRIPTION</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of TaskList | pipe: searchTerm; index as i">
+          <td scope="row">{{ i + 1 }}</td>
+           <td>{{dataItem.TASK_ID}}</td>
+           <td>{{dataItem.TASK_NAME}}</td>
+           <td>{{dataItem.TASK_STATUS}}</td>
+           <td>{{dataItem.START_TIME}}</td>
+           <td>{{dataItem.END_TIME}}</td>
+           <td>{{dataItem.CREATED_DATE}}</td>
+           <td>{{dataItem.APPROVAL_STATUS}}</td>
+           <td>{{dataItem.ASSIGNED_MANAGER}}</td>
+           <td>{{dataItem.TASK_DESCRIPTION}}</td>
+           <td><button type="button" class="btn btn-secondary" (click)="action(dataItem.TASK_ID)">Action</button></td>
+        </tr>
+    </tbody>
+</table>
+
